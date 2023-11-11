@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { Product, onChangeArgs } from './../interfaces/interfaces';
 
 interface useProductArgs {
@@ -11,13 +11,7 @@ export const useProduct = ({ onChange, product, value = 0 }: useProductArgs) => 
 
     const[ counter, setCounter ] = useState(value)
 
-    const isControlled = useRef( !!onChange ) //Necesito saber si la función onChange es true || undefined
-
     const increaseBy = (value: number) => {
-
-      if( isControlled.current) {
-        return onChange!({ count: value, product})
-      }
 
       //Por la renderización de React, necesito saber el valor del counter pronto para la funcion del onChange
       const newValue = Math.max( counter + value, 0)
